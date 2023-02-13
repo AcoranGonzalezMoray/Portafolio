@@ -1,0 +1,93 @@
+<h1 id="tuespacio">TuEspacio</h1>
+<p align="center"><img class="img" src="https://github.com/AcoranGonzalezMoray/MyDrive/blob/main/images/Home.png?raw=true"></p>
+<img align=left src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white"><img align=left src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+<p><br>
+
+<p>Esta web permite a un usuario almacenar, compartir, abrir, editar, eliminar y ver cualquier archivo de forma online, este proyecto es ideal para implementarlo de forma local tanto para uso doméstico como profesional. Al registrarse el sistema asigna automaticamente 10GB de espacio, aunque esto puede ser retocado por el administrador como se observa en la sección de Personalización. Recalcar que este sistema implementa un tutorial interactivo para los nuevos usuarios (<a href="https://github.com/AcoranGonzalezMoray/MyEspace#material-implicado"> Enjoyhint </a>)</p>
+</p>
+
+<h2 id="panel-público-dark">Panel Público (Dark)</h2>
+<p align="center"><img class="img" src="https://github.com/AcoranGonzalezMoray/MyDrive/blob/main/images/Contenido_P.png?raw=true"></p>
+
+<p>
+Aquí cualquier usuario puede modificar o ver de forma que los cambios realizados son público, el contenido de este  'directorio' pertence al 'htdocs' de Xampp. (<a href="https://github.com/AcoranGonzalezMoray/MyEspace#material-implicado"> Tiny File Manager </a>)
+</p>
+
+<h2 id="panel-privado-light">Panel Privado (Light)</h2>
+<p align="center"><img class="img" src="https://github.com/AcoranGonzalezMoray/MyDrive/blob/main/images/Contenido_PP.png?raw=true"></p>
+
+<p>
+Además del panel público el usuario dispone de su propio panel privado, donde tiene la posibilidad de ompartir si lo desea cualquier contenido a un usuario concreto. (<a href="https://github.com/AcoranGonzalezMoray/MyEspace#material-implicado"> Tiny File Manager </a>)
+</p>
+
+<h2 id="dropzone">Dropzone</h2>
+<p align="center"><img class="img"  src="https://github.com/AcoranGonzalezMoray/MyDrive/blob/main/images/DropZone.png?raw=true"></p>
+
+<p>
+Cuando el usuario se disponga a subir 'X' archivo al servidor puede hacerlo mediante el botón situado al comienzo de la web
+o desde el propio panel.
+</p>
+
+<h2 id="tutorial">Tutorial</h2>
+<p align="center"><img class="img"  src="https://github.com/AcoranGonzalezMoray/MyDrive/blob/main/images/Tutorial.png?raw=true"></p>
+
+<p>
+ + Se ha implementado usando <a href="https://github.com/AcoranGonzalezMoray/MyEspace#material-implicado"> Enjoyhint </a> un tutorial interactivo para los nuevos usuarios.
+</p>
+
+<h2 id="personalización">Personalización</h2>
+<h3 id="1diagrama-entidad-relación">1.Diagrama Entidad Relación:</h3>
+<p align="center"><img  class="img" src="https://github.com/AcoranGonzalezMoray/MyDrive/blob/main/images/Diagrama%20entidad%20relaci%C3%B3n.png?raw=true"></p>
+Donde Lim, indica los GB asignados a un usuario nuevo, y tutorial si un nuevo usuario ya pasó el tutorial
+<br>
+
+<h3 id="2directorio-usado-para-los-espacios-privados-de-cada-usuario">2.Directorio usado para los espacios privados de cada usuario:</h3>
+<p>Como se ha comentado la ruta para el directorio público usado es el propio htdocs de xampp, mientras que la ruta donde se crean los directorios privados (la creación de los ficheros al registrarse un usuario ya viene implementado solo hay que cambiar la ruta) pertenece a un disco hdd, por tanto está fuera del diretorio predeterminado como público. Para añadir una nueva ruta fuera de htdocs como accesible en xampp se ha de configurar el archivo  <code>httpd.conf</code> añadiendo las siguientes líneas</p>
+<p>httpd.conf:</p>
+<pre><code># Example:
+    # Redirect permanent /foo http://www.example.com/bar
+    #
+    # Alias: Maps web paths into filesystem paths and is used to
+    # access content that does not live under the DocumentRoot.
+    # Example:
+    # Alias /webpath /full/filesystem/path
+    #
+    # If you include a trailing / on /webpath then the server will
+    # require it to be present in the URL.  You will also likely
+    # need to provide a &lt;Directory&gt; section to allow access to
+    # the filesystem path.
+    Alias /&#39;nombre&#39; &quot;ruta&quot;
+    &lt;Directory &quot;ruta&quot;&gt;
+      Options Indexes FollowSymLinks
+      AllowOverride All
+      Require all granted
+    &lt;/Directory&gt;
+  
+</code></pre>
+<p>A continuación se copia el archivo <code>allUser/prueba/index.php</code> y se pega en el nuevo directorio privado que se ha especificado anteriormente además de modificar las siguientes líneas:</p>
+<p>allUser/prueba/index.php:</p>
+<pre><code>...
+// Root path for file manager
+// use absolute path of directory i.e: &#39;/var/www/folder&#39; or $_SERVER[&#39;DOCUMENT_ROOT&#39;].&#39;/folder&#39;
+$root_path = &#39;ruta_directorio_privado&#39;;
+...
+</code></pre>
+<h2 id="gráfico-almacenamiento">Gráfico Almacenamiento</h2>
+<p>Este gráfico se muestra al principio e indica al usuario el almacenamiento consumido/ocupado y el restante libre.</p>
+<h2 id="material-implicado">Material implicado:</h2>
+<p>--&gt; Tiny File Manager (<a href="https://github.com/prasathmani/tinyfilemanager.git">https://github.com/prasathmani/tinyfilemanager.git</a>)</p>
+<p>--&gt; Enjoyhint (<a href="https://github.com/xbsoftware/enjoyhint.git">https://github.com/xbsoftware/enjoyhint.git</a>)</p>
+<p>--&gt; Google chart (<a href="https://developers.google.com/chart/?csw=1">https://developers.google.com/chart/?csw=1</a>)</p>
+<style>
+  h1,h2,p,h3,li,h4,h5{
+    color: white;
+  }
+  code{
+    color: white;
+    background-color: darkgray;
+  }
+  .img{
+    width: 700;
+    height:  fit-content;
+  }
+</style>

@@ -1,0 +1,143 @@
+<h1 align="center"> MyMessage <img height="50" align="center" src="https://github.com/AcoranGonzalezMoray/MyMessage/blob/main/Components/icon.png?raw=true"/></h1>
+
+
+
+<p align="center"> 
+<img src="https://img.shields.io/badge/Plataforma-IOS%2FAndroid-green"/> <img src="https://img.shields.io/badge/framework-react%20native-blue"/> 
+<img src="https://img.shields.io/badge/React%20Native-0.70.4-green"/> 
+
+<img src="https://img.shields.io/badge/Versi%C3%B3n-0.0.1-red"/> 
+<img src="https://img.shields.io/badge/language-typescript%20%7C%20swift%20%7C%20java-lightblue"/>
+
+</p>
+<p>MyMessage es una app de mensajería con autenticación incrustada, el cual permite realizar algunas de las acciones que permiten las applicaciones modernas de este ambito, con las que se puede hablar instantáneamente con otros usuarios, además esta app habilita actualizaciones de estado</p>
+
+
+<h2 id="contenido">Contenido</h2>
+<div>
+
+  <h3>1.App</h3>
+  <h3>2.Funciones</h3>
+  <h3>3.Funciones</h3>
+  <h3>4.Instalación</h3>
+  <h3>5.Notas</h3>
+ 
+</div>
+
+<h2 id="app">App</h2>
+<h3 id="login">Login:</h3>
+  <p align="center">
+    <img height="700" src="https://github.com/AcoranGonzalezMoray/MyMessage/blob/main/gif/LOGIN.gif?raw=true"/> 
+  </p>
+
+<h3 id="use">Use:</h3>
+  <p align="center">
+    <img height="700" src="https://github.com/AcoranGonzalezMoray/MyMessage/blob/main/gif/WORK.gif?raw=true"/> 
+  </p>
+
+<h2 id="framework-y--base-de-datos-de-documentos-nosql">Framework y  base de datos de documentos NoSQL</h2>
+  <li><a href="https://reactnative.dev/" >React Native</a></li>
+  <li><a href="https://firebase.google.com/docs/firestore?hl=es-419" >Firestore</a></li>
+  
+<h2 id="funciones">Funciones</h2>
+  <li>Función de logueo y registro</li>
+  <li>Envio de mensajes en tiempo real (Actualizacion instantánea entre par de usuarios)</li>
+  <li>Reportar o eliminar historial del chat entre par de usuarios</li>
+  <li>Agregar/Eliminar a nuevos contactos</li>
+
+<h2 id="instalación">Instalación</h2>
+<h3 id="pasos">Pasos:</h3>
+<h4 id="clonar-repositorio">Clonar Repositorio</h4>
+<pre><code>git clone https://github.com/AcoranGonzalezMoray/MyMessage.git
+</code></pre>
+<h4 id="instalar-dependencias-del-proyecto">Instalar dependencias del proyecto</h4>
+<pre><code>npm install (--legacy-peer-deps solo si npm ERR!)
+</code></pre>
+<h4 id="ejecutar-aplicación">Ejecutar Aplicación</h4>
+<h5 id="android">Android:</h5>
+<pre><code>npx react-native run-android
+</code></pre>
+<h5 id="ios">Ios:</h5>
+<pre><code>npx react-native run-ios
+</code></pre>
+<h3 id="notas">Notas</h3>
+<li>Si quiere que este proyecto funcione debe crear una cuenta en firestore e implementear la base de datos (RealTime DataBase) y activar la autenticación de su proyecto en firestore, 
+a continuación se muestra  la forma en la que se representa la base de datos de este proyecto como guia: </li>
+
+<pre><code>{
+  &quot;Users&quot;: {
+    &quot;user1@gmailcom&quot;: {
+      &quot;contacts&quot;: {
+        &quot;USER&quot;: {
+          &quot;id&quot;: 1675085419911,
+          &quot;message&quot;: {
+            &quot;noend&quot;: {
+              &quot;id&quot;: 1675085419911,
+              &quot;message&quot;: &quot;ESTE ES EL COMIENZO DEL CHAT&quot;,
+              &quot;order&quot;: 0,
+              &quot;who&quot;: &quot;user1@gmail.com&quot;
+            }
+          },
+          &quot;nombre&quot;: &quot;Usuario1&quot;
+        },
+        &quot;user2@gmailcom&quot;: {
+          &quot;id&quot;: 1675085537304,
+          &quot;message&quot;: {
+            &quot;noend&quot;: {
+              &quot;id&quot;: 1675085574256,
+              &quot;message&quot;: &quot;ESTE ES EL COMIENZO DEL CHAT&quot;,
+              &quot;order&quot;: 0,
+              &quot;who&quot;: &quot;user1@gmailcom&quot;
+            }
+          },
+          &quot;nombre&quot;: &quot;user2@gmailcom&quot;
+        }
+      },
+      &quot;email&quot;: &quot;user1@gmail.com&quot;,
+      &quot;name&quot;: &quot;Usuario1&quot;,
+      &quot;uid&quot;: &quot;ZCkyfzSspPSyldgGs1tdPNVyEpY2&quot;
+    },
+    &quot;user2@gmailcom&quot;: {
+      &quot;contacts&quot;: {
+        &quot;USER&quot;: {
+          &quot;id&quot;: 1675085420545,
+          &quot;message&quot;: {
+            &quot;noend&quot;: {
+              &quot;id&quot;: 1675085420545,
+              &quot;message&quot;: &quot;ESTE ES EL COMIENZO DEL CHAT&quot;,
+              &quot;order&quot;: 0,
+              &quot;who&quot;: &quot;user2@gmail.com&quot;
+            }
+          },
+          &quot;nombre&quot;: &quot;Usuario2&quot;
+        },
+        &quot;user1@gmailcom&quot;: {
+          &quot;id&quot;: 1675085537305,
+          &quot;message&quot;: {
+            &quot;noend&quot;: {
+              &quot;id&quot;: 1675085578631,
+              &quot;message&quot;: &quot;ESTE ES EL COMIENZO DEL CHAT&quot;,
+              &quot;order&quot;: 0,
+              &quot;who&quot;: &quot;user2@gmailcom&quot;
+            }
+          },
+          &quot;nombre&quot;: &quot;user1@gmailcom&quot;
+        }
+      },
+      &quot;email&quot;: &quot;user2@gmail.com&quot;,
+      &quot;name&quot;: &quot;Usuario2&quot;,
+      &quot;uid&quot;: &quot;zHHqgwtBFoc9TJcyaWJWDfXwiv83&quot;
+    }
+  }
+}
+</code></pre>
+
+<style>
+  h1,h2,p,h3,li,h4,h5{
+    color: white;
+  }
+  code{
+    color: white;
+    background-color: darkgray;
+  }
+</style>

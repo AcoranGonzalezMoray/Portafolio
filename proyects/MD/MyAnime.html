@@ -1,0 +1,98 @@
+<h1 align="center"> MyAnime </h1>
+<p align="center"> 
+<img src="https://img.shields.io/badge/Plataforma-IOS%2FAndroid-green"/> <img src="https://img.shields.io/badge/framework-react%20native-blue"/> 
+<img src="https://img.shields.io/badge/React%20Native-0.70.4-green"/> 
+
+<img src="https://img.shields.io/badge/Versi%C3%B3n-0.0.1-red"/> 
+<img src="https://img.shields.io/badge/language-typescript%20%7C%20swift%20%7C%20java-lightblue"/>
+
+</p>
+<p>MyAnime es una app de Entretenimiento/Informativa para estar al tanto de las ultimas películas o animes estrenados con  trailers, sinopsis, fecha, episodios duración ...etc,  además la app incorpora un apartado 'Shorts' el cuál permite buscar videos hechos por usuarios de  "Pexels" mediante palabras clave</p>
+
+
+<h2 id="contenido">Contenido</h2>
+<div>
+
+  <h3>1.App</h3>
+  <h3>2.Framework e APIs usadas</h3>
+  <h3>3.Funciones</h3>
+  <h3>4.Instalación</h3>
+  <h3>5.Notas</h3>
+ 
+</div>
+
+<h2 id="app">App</h2>
+<h3 id="modo-oscuro">Modo Oscuro</h3>
+  <p align="center">
+    <img height="500" src="https://github.com/AcoranGonzalezMoray/MyAnime/blob/main/gif/1_black.gif?raw=true"/> 
+    <img height="500" src="https://github.com/AcoranGonzalezMoray/MyAnime/blob/main/gif/2_black.gif?raw=true"/> 
+    <img height="500" src="https://github.com/AcoranGonzalezMoray/MyAnime/blob/main/gif/3_black.gif?raw=true"/> 
+
+  </p>
+
+<h3 id="modo-claro">Modo Claro</h3>
+  <p align="center">
+    <img height="500" src="https://github.com/AcoranGonzalezMoray/MyAnime/blob/main/gif/1_white.gif?raw=true"/> 
+    <img height="500" src="https://github.com/AcoranGonzalezMoray/MyAnime/blob/main/gif/2_white.gif?raw=true"/> 
+    <img height="500" src="https://github.com/AcoranGonzalezMoray/MyAnime/blob/main/gif/3_white.gif?raw=true"/> 
+  </p>
+
+<h2 id="framework-e-apis-usadas">Framework e APIs usadas</h2>
+  <li><a href="https://reactnative.dev/" >React Native</a></li>
+  <li><a href="https://kitsu.docs.apiary.io/" >Kitsu API</a></li>
+  <li><a href="https://imdb-api.com/" >IMDb-API</a></li>
+  <li><a href="https://www.pexels.com/api/" >Pexels API</a></li>
+
+<h2 id="funciones">Funciones</h2>
+  <li>Muestra información de Anime / Peliculas (Trailer - Imagenes - Episodios - Descripción - ...)</li>
+  <li>Permite filtrado con buscador por nombre tanto para la pantalla de "Anime" como "Film"</li>
+  <li>Permite filtrado por categoría *Solo pantalla Anime*</li>
+
+<h2 id="instalación">Instalación</h2>
+<h3 id="pasos">Pasos:</h3>
+<h4 id="clonar-repositorio">Clonar Repositorio</h4>
+<pre><code>git clone https://github.com/AcoranGonzalezMoray/MyAnime.git
+</code></pre>
+<h4 id="instalar-dependencias-del-proyecto">Instalar dependencias del proyecto</h4>
+<pre><code>npm install (--legacy-peer-deps solo si npm ERR!)
+</code></pre>
+<h4 id="editar-enlaces-api-añadiendo-tu-clave">Editar enlaces API añadiendo tu clave</h4>
+<h5 id="ruta-myanimecomponentsscreendetailscreendetailsfilmjs">Ruta &#39;MyAnime/Components/Screen/DetailScreen/DetailsFilm.js&#39;</h5>
+<pre><code> `https://imdb-api.com/en/API/YouTubeTrailer/YOURKEY/${items.id}`
+</code></pre>
+<h5 id="ruta-myanimecomponentsscreenfilm-screenappfilmjs">Ruta &#39;MyAnime/Components/Screen/Film Screen/AppFilm.js&#39;</h5>
+<pre><code> `https://imdb-api.com/en/API/YouTubeTrailer/YOURKEY/${tmp}`
+ `https://imdb-api.com/en/API/MostPopularMovies/YOURKEY`
+ `https://imdb-api.com/en/API/Top250Movies/YOURKEY`
+</code></pre>
+<h5 id="ruta-myanimecomponentsscreenfilm-screensearchfilmjs">Ruta &#39;MyAnime/Components/Screen/Film Screen/SearchFilm.js&#39;</h5>
+<pre><code>  `https://imdb-api.com/en/API/SearchMovie/YOURKEY/${searchQuery}`
+</code></pre>
+<h5 id="ruta-myanimecomponentsscreenshorts-screenshortsjs">Ruta &#39;MyAnime/Components/Screen/Shorts Screen/Shorts.js&#39;</h5>
+<pre><code> `https://api.pexels.com/videos/search?query=${query}&amp;page=${pageRecent}&amp;per_page=6&amp;orientation=portrait`,
+ { headers: new Headers({&#39;Authorization&#39;: &#39;YOURKEY&#39;})}
+</code></pre>
+<h4 id="ejecutar-aplicación">Ejecutar Aplicación</h4>
+<h5 id="android">Android:</h5>
+<pre><code>npx react-native run-android
+</code></pre>
+<h5 id="ios">Ios:</h5>
+<pre><code>npx react-native run-ios
+</code></pre>
+<h3 id="notas">Notas</h3>
+<li>Recomiendo encarecidamente compilar y ejecutar este proyecto con Java JDK 17, para evitar incompatibilidades con los distintos paquetes instalados con npm</li>
+<li>En futuros proyectos si al ejecutar en debug encuentras BUG! exception in phase 'semantic analysis' entonces:</li>
+El problema es que usa una version Java x y Gradle x.x Pero Gradle x.x no es compatible con Java x. 
+
+<p>Necesitaba actualizar el graddle. Simplemente se cambia gradle/wrapper/gradle-wrapper.propertiesen esta línea (encontrando el gradel compatible):</p>
+<pre><code>distributionUrl=https\://services.gradle.org/distributions/gradle-7.0-bin.zip
+</code></pre>
+<style>
+  h1,h2,p,h3,li,h4,h5{
+    color: white;
+  }
+  code{
+    color: white;
+    background-color: darkgray;
+  }
+</style>

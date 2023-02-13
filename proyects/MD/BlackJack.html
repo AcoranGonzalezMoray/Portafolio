@@ -1,0 +1,60 @@
+<h1 id="blackjack-tdd">BlackJack (TDD)</h1>
+<h2 id="máquina-de-jugar-a-black-jack">Máquina de jugar a Black Jack.</h2>
+<p>Un nuevo casino ha llegado a Las Vegas, pero este casino no quiere tener personal humano,
+sino implementar una serie de sistemas informáticos que automatizan los procesos de juego.
+Después de buscar referencias y recomendaciones..., la Dirección del Casino ha decidido
+contratarte para desarrollar estos sistemas.</p>
+<p>Tu tarea es completar la función que reparte cartas para el crupier (última fase de la partida de
+Black Jack) y devuelve los jugadores que han ganado.</p>
+<h2 id="las-reglas-son-las-siguientes">Las reglas son las siguientes:</h2>
+<p>1.- Cada partida consta de 3 jugadores (&quot;Player1&quot;, &quot;Player2&quot;, &quot;Player3&quot;) que juegan de forma individual contra el crupier (los jugadores no juegan entre ellos)<br/>
+2.- Cada carta tiene su valor: los números valen lo que indique su número; &quot;J&quot;, &quot;Q&quot; y &quot;K&quot; valen 10; &quot;A&quot; puede valer 11 o 1.<br/>
+3.- Si un jugador excede de 21 puntos pierde <br/>
+4.- El crupier debe sacar carta del montón hasta que su mano tenga 17 puntos o más.<br/>
+5.- Un jugador tiene un Black Jack cuando tiene 2 cartas, una con valor 10 y la otra es una &quot;A&quot;.<br/>
+6.- Si el jugador tiene Black Jack, gana, a menos que el crupier también tenga Black Jack.<br/>
+7.- Cuando el crupier saca una carta, el crupier siempre saca la primera carta del motón.<br/></p>
+<h2 id="diseño">Diseño</h2>
+<p>Para ello, necesitamos crear una función, getWinners(...), que recibe 5 parámetros</p>
+<ol>
+<li>Las cartas del Player1 </li>
+<li>Las cartas del Player2 </li>
+<li>Las cartas del Player3</li>
+<li>Las cartas del Croupier </li>
+<li>El montón de cartas pendientes de sacar</li>
+</ol>
+<p>La función genera un array con los jugadores que ganan.  </p>
+<h2 id="casos">Casos</h2>
+<h3 id="caso-1">Caso 1</h3>
+<p>Player 1: &quot;J&quot;, &quot;A&quot; (21, Black Jack)<br/>
+Player 2: &quot;10&quot;, &quot;5&quot;, &quot;6&quot; (21)<br/>
+Player 3: &quot;3&quot;, &quot;6&quot;, &quot;A&quot;, &quot;3&quot;, &quot;A&quot;, &quot;K&quot; (24)<br/>
+Croupier: &quot;9&quot;, &quot;7&quot; (16)<br/>
+Deck: &quot;5&quot;, &quot;4&quot;, &quot;K&quot;, &quot;2&quot;<br/></p>
+<p>getWinners(...) -----&gt; [Player1]<br/></p>
+<h3 id="caso-2">Caso 2</h3>
+<p>Player 1: &quot;10&quot;, &quot;K&quot; (20)<br/>
+Player 2: &quot;10&quot;, &quot;2&quot;, &quot;6&quot; (18)<br/>
+Player 3: &quot;8&quot;, &quot;8&quot;, &quot;5&quot; (21)<br/>
+Croupier: &quot;5&quot;, &quot;10&quot; (15)<br/>
+Deck: &quot;A&quot; , &quot;3&quot; , &quot;K&quot; , &quot;2&quot;<br/></p>
+<p>getWinners(...) -----&gt; [Player1, Player3] </p>
+<p>Requiere:</p>
+<pre><code>Java JDK 17
+</code></pre>
+<style>
+    h1,h2,p,h3,li,h4,h5{
+      color: white;
+    }
+    code{
+      color: white;
+      background-color: darkgray;
+    }
+    img{
+    width: 700;
+    height:  fit-content;
+    }
+    td,th{
+        color: white;
+    }
+  </style>

@@ -1,0 +1,95 @@
+<h1 id="web-service-que-expone-una-api-rest-para-consultar-estadísticas-de-vuelos">Web service que expone una API REST para consultar estadísticas de vuelos.</h1>
+<h2 id="nota-importante">Nota Importante</h2>
+<ul>
+<li>Una vez descargado/clonado el código, debe extraer <code>flights.rar</code> luego puede ejecutar el proyecto para activar la <code>Web Service</code></li>
+</ul>
+<h2 id="comportamiento">Comportamiento</h2>
+<ul>
+<li>La API debe exponer recursos (según la metodología REST) para obtener histogramas
+serializados en formato JSON.</li>
+<li>En la petición se tendría que especificar, como parámetro inline o como parámetro de
+query:<ul>
+<li>Dimensión por la que se está realizando el histograma (p.e. hora de llegada, o
+retrasos).  </li>
+<li>Filtros que se han aplicado en el cálculo del histograma (p.e. día de la semana).</li>
+<li>Tamaño del bin (p.e. 6 horas cuando la dimensión es la hora de llegada)</li>
+</ul>
+</li>
+<li>El esquema del histograma debe tener como mínimo los siguientes campos:<ul>
+<li>Dimensión</li>
+<li>Filtros </li>
+<li>Valores de la dimensión (eje X)</li>
+<li>Valores del histograma (eje Y)</li>
+</ul>
+</li>
+</ul>
+<h2 id="instrucciones-de-uso">Instrucciones de Uso</h2>
+<ul>
+<li>Una vez ejecutado el código podrá realizar peticiones a travez del puerto 8080 (Puede especificar otro puerto en el archivo <code>Kata7.java</code>)</li>
+</ul>
+<h3 id="1-dimension">1. Dimension</h3>
+<ul>
+<li>Cuando se requiera realizar una petición como mínimo le debemos indicar la dimension por el cual pregunta para así devolver los datos correcto para formar un histograma.</li>
+</ul>
+<h4 id="ejemplo-httplocalhost8080flightdeparturetime-donde-le-preguntamos-por-el-departuretime-de-todos-los-vuelos-de-la-base-de-datos">Ejemplo: <code>http://localhost:8080/Flight/departureTime</code> donde le preguntamos por el departureTime de todos los vuelos de la base de datos.</h4>
+<h4 id="salida">Salida:</h4>
+<pre><code>{&quot;status&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;Dimension&quot;:&quot;departureTime&quot;,&quot;Filtros&quot;:&quot;null&quot;,&quot;Bin&quot;:&quot;1&quot;,&quot;lenY&quot;:&quot;5819811&quot;,&quot;Valores_Dimension_Eje_x&quot;:
+[&quot;00:00-01:00&quot;,&quot;01:00-02:00&quot;,&quot;02:00-03:00&quot;,&quot;03:00-04:00&quot;,&quot;04:00-05:00&quot;,&quot;05:00-06:00&quot;,&quot;06:00-07:00&quot;,&quot;07:00-08:00&quot;,&quot;08:00-09:00&quot;,
+&quot;09:00-10:00&quot;,&quot;10:00-11:00&quot;,&quot;11:00-12:00&quot;,&quot;12:00-13:00&quot;,&quot;13:00-14:00&quot;,&quot;14:00-15:00&quot;,&quot;15:00-16:00&quot;,&quot;16:00-17:00&quot;,&quot;17:00-18:00&quot;,
+&quot;18:00-19:00&quot;,&quot;19:00-20:00&quot;,&quot;20:00-21:00&quot;,&quot;21:00-22:00&quot;,&quot;22:00-23:00&quot;,&quot;23:00-23:59&quot;],
+&quot;Valores_Histogtrama_Eje_y&quot;:[140701,6348,1603,925,4831,162720,358783,342039,379840,338775,360981,362215,348348,354289,341436,
+347554,338163,373699,326684,326360,256331,191700,111645,43841]}}
+</code></pre>
+<ul>
+<li>Como observamos la salida compone los datos necesarios:<ul>
+<li>Dimension = departureTime (Corresponde por el parametro pasado por la peticion)</li>
+<li>Filtros   = null (No se han aplicado filtros)</li>
+<li>Bin       = 1 (Por defecto si no se especifica siempre es 1)</li>
+<li>lenY      = 5819811 (Vuelos totales que corresponden a la dimension y filtro aplicado y por tanto, es la sumatoria de los valores repartidos en el EjeY)</li>
+<li>Valores_Dimension_Eje_x = [...] (Lista de valores de la dimension pasada)</li>
+<li>Valores_Histogtrama_Eje_y = [...] (Contador de vuelos para cada valor de la dimension)</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-dimension-con-bin">2. Dimension con Bin</h3>
+<h4 id="ejemplo-httplocalhost8080flightdeparturetimebin6-donde-le-preguntamos-por-el-departuretime-de-todos-los-vuelos-de-la-base-de-datos-separados-por-un-bin-devuelve-por-rangos">Ejemplo: <code>http://localhost:8080/Flight/departureTime?bin=6</code> donde le preguntamos por el departureTime de todos los vuelos de la base de datos separados por un bin (devuelve por rangos).</h4>
+<h4 id="salida-1">Salida:</h4>
+<pre><code>{&quot;status&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;Dimension&quot;:&quot;departureTime&quot;,&quot;Filtros&quot;:&quot;null&quot;,&quot;Bin&quot;:&quot;6&quot;,&quot;lenY&quot;:&quot;5819811&quot;,
+&quot;Valores_Dimension_Eje_x&quot;:[&quot;00:00-06:00&quot;,&quot;06:00-12:00&quot;,&quot;12:00-18:00&quot;,&quot;18:00-23:59&quot;],
+&quot;Valores_Histogtrama_Eje_y&quot;:[317128,2142633,2103489,1256561]}}
+</code></pre>
+<h3 id="3-dimension-con-filtro">3. Dimension con Filtro</h3>
+<h4 id="ejemplo-httplocalhost8080flightdeparturetimefiltrosdayofweekfridaymondaycancelledtrue-donde-le-preguntamos-por-el-departuretime-de-todos-aquellos-vuelos-de-la-base-de-datos-que-se-hayan-realizado-un-viernes-o-un-lunes-y-que-además-estos-hayan-sido-cancelados">Ejemplo: <code>http://localhost:8080/Flight/departureTime?Filtros=dayOfWeek=FRIDAY,MONDAY;cancelled=true</code> donde le preguntamos por el departureTime de todos aquellos vuelos de la base de datos que se hayan realizado un Viernes o un Lunes y que además estos hayan sido cancelados;</h4>
+<h4 id="salida-2">Salida:</h4>
+<pre><code>{&quot;status&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;Dimension&quot;:&quot;departureTime&quot;,&quot;Filtros&quot;:&quot;dayOfWeek:FRIDAY,MONDAY;cancelled:true&quot;,
+&quot;Bin&quot;:&quot;1&quot;,&quot;lenY&quot;:&quot;37810&quot;,&quot;Valores_Dimension_Eje_x&quot;:[&quot;00:00-01:00&quot;,&quot;01:00-02:00&quot;,&quot;02:00-03:00&quot;,&quot;03:00-04:00&quot;,
+&quot;04:00-05:00&quot;,&quot;05:00-06:00&quot;,&quot;06:00-07:00&quot;,&quot;07:00-08:00&quot;,&quot;08:00-09:00&quot;,&quot;09:00-10:00&quot;,&quot;10:00-11:00&quot;,&quot;11:00-12:00&quot;,
+&quot;12:00-13:00&quot;,&quot;13:00-14:00&quot;,&quot;14:00-15:00&quot;,&quot;15:00-16:00&quot;,&quot;16:00-17:00&quot;,&quot;17:00-18:00&quot;,&quot;18:00-19:00&quot;,&quot;19:00-20:00&quot;,
+&quot;20:00-21:00&quot;,&quot;21:00-22:00&quot;,&quot;22:00-23:00&quot;,&quot;23:00-23:59&quot;],
+&quot;Valores_Histogtrama_Eje_y&quot;:[36497,4,2,0,2,48,87,60,55,35,48,44,50,89,93,85,107,124,83,80,70,80,44,23]}}
+</code></pre>
+<ul>
+<li>Tenga en cuenta que para especificar un Filtro se utiliza la expresión <code>Filtros={parametro}={valor}</code> si requiere de mas de un valor deben ir acompañado de una <code>,</code> por ejemplo <code>Filtros={parametro}={valor1,valor2}</code>, si requiere de más parametros debe separarlos con <code>;</code>  por ejemplo <code>Filtros={parametro}={valor1,valor2};{parametro}={valor}</code> . Aquí tiene algunos ejemplos funcionales:<ul>
+<li><ol>
+<li><code>localhost:8080/Flight/arrivalTime?Filtros=diverted=true</code></li>
+</ol>
+</li>
+<li><ol start="2">
+<li><code>localhost:8080/Flight/arrivalDelay?Filtros=dayOfWeek=FRIDAY,MONDAY</code></li>
+</ol>
+</li>
+<li><ol start="3">
+<li><code>localhost:8080/Flight/distance?Filtros=dayOfWeek=FRIDAY,MONDAY;cancelled=false;diverted=true</code></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-dimension-con-filtro-y-bin">4. Dimension con Filtro y Bin</h3>
+<h4 id="ejemplo-httplocalhost8080flightdeparturedelayfiltrosdayofweekwednesdaymondaydivertedtruebin200-donde-le-preguntamos-por-el-departuredelay-de-todos-los-vuelos-de-la-base-de-datos-que-se-hayan-realizado-un-miercoles-o-un-lunes-y-que-además-estos-hayan-sido-diverted-luego-le-especificamos-un-bin-de-200-para-una-salida-más-amable-rangos-de-200">Ejemplo: <code>http://localhost:8080/Flight/departureDelay?Filtros=dayOfWeek=WEDNESDAY,MONDAY;diverted=true&amp;&amp;bin=200</code> donde le preguntamos por el departureDelay de todos los vuelos de la base de datos que se hayan realizado un Miercoles o un Lunes y que además estos hayan sido diverted, luego le especificamos un bin de 200 para una salida más amable (rangos de 200)</h4>
+<h4 id="salida-3">Salida:</h4>
+<pre><code>{&quot;status&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;Dimension&quot;:&quot;departureDelay&quot;,&quot;Filtros&quot;:&quot;dayOfWeek:WEDNESDAY,MONDAY;diverted:true&quot;
+,&quot;Bin&quot;:&quot;200&quot;,&quot;lenY&quot;:&quot;4341&quot;,
+&quot;Valores_Dimension_Eje_x&quot;:[&quot;(-19)-(181)&quot;,&quot;(181)-(381)&quot;,&quot;(381)-(581)&quot;,&quot;(581)-(781)&quot;,&quot;(781)-(981)&quot;,&quot;(981)-(1030)&quot;],
+&quot;Valores_Histogtrama_Eje_y&quot;:[4201,125,12,1,1,1]}}
+</code></pre>
