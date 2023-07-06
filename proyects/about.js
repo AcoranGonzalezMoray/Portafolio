@@ -35,9 +35,14 @@ document.write('\
        <div class="about-text-paragraph">\
        <li class="fade-up"> <a href="https://www.linkedin.com/in/acorán-gonzález-moray/">LINKEDIN</a></li>\
       </div>\
-       <div class="about-text-button">\
-         <button class="contact-link-about contact-button hover">\Contactar</button>\
-       </div>\
+      <div style="display:flex">\
+        <div class="about-text-button">\
+        <a href="mailto:acorangonzalezmoray@gmail.com" ><button class=" contact-button hover">\Contactar</button></a>\
+        </div>\
+        <div class="about-text-button">\
+        <a target="blank" href="./proyects/DOC/CV - Acorán González Moray.pdf" download="CV - Acorán González Moray.pdf" ><button class=" contact-button hover">\Descargar CV</button></a>\
+        </div>\
+      </div>\
      </div>\
     </div>\
    </div>\

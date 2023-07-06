@@ -10,7 +10,7 @@ document.write('\
     <div class="navigation-links">\
       <ul>\
         <li class="links about-link fade-down">\<a href="#0">SOBRE MI</a>\</li>\
-        <li class="links contact-link fade-down">\<a href="#0">CONTACTO</a>\</li>\
+        <li class="links  fade-down">\<a href="mailto:acorangonzalezmoray@gmail.com">CONTACTO</a>\</li>\
       </ul>\
     </div>\
     \

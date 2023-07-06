@@ -23,6 +23,16 @@ document.write('\
       <iframe src="./proyects/MD/TuEspacio.html"></iframe>\
      </div>\
      \
+     \
+     <div class="slides">\
+     <iframe src="./proyects/MD/SBO.html"></iframe>\
+    </div>\
+    \
+    \
+    <div class="slides">\
+    <iframe src="./proyects/MD/SGO.html"></iframe>\
+   </div>\
+   \
    </div>\
    \
    </div>\
